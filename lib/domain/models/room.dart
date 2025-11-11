@@ -1,21 +1,18 @@
+import 'bed.dart';
 import 'enum.dart';
-import 'Bed.dart';
 import 'package:uuid/uuid.dart';
 
-var uuid = Uuid();
+final uuid = Uuid();
 
 abstract class Room {
   final String roomId;
   final int roomNumber;
-  final List<Bed> beds;
   final RoomType roomType;
+  final List<Bed> beds;
 
-  Room(
-      {String? roomId,
-      required this.roomNumber,
-      required this.beds,
-      required this.roomType})
-      : roomId = roomId ?? uuid.v4();
+  Room({required this.roomNumber, required this.roomType, List<Bed>? beds})
+      : roomId = uuid.v4(),
+        beds = beds ?? List.generate(roomType.beds, (index) => Bed());
 
   Bed? getAvailableBed() {
     for (var bed in beds) {
@@ -26,25 +23,16 @@ abstract class Room {
 }
 
 class EmergencyRoom extends Room {
-  EmergencyRoom({ List<Bed>? beds, required int roomNumber}):
-    super(roomType: RoomType.Emergency,
-    beds : beds ?? List.generate(RoomType.Emergency.beds,(index) => Bed()),
-    roomNumber: roomNumber
-  );
+  EmergencyRoom({required int roomNumber})
+      : super(roomNumber: roomNumber, roomType: RoomType.Emergency);
 }
 
 class ICURoom extends Room {
-  ICURoom({ List<Bed>? beds, required int roomNumber}):
-    super(roomType: RoomType.Emergency,
-    beds : beds ?? List.generate(RoomType.ICU.beds,(index) => Bed()),
-    roomNumber: roomNumber
-  );
+  ICURoom({required int roomNumber})
+      : super(roomNumber: roomNumber, roomType: RoomType.ICU);
 }
 
-class GenetalRoom extends Room {
-  GenetalRoom({ List<Bed>? beds, required int roomNumber}):
-    super(roomType: RoomType.Emergency,
-    beds : beds ?? List.generate(RoomType.General.beds,(index) => Bed()),
-    roomNumber: roomNumber
-  );
+class GeneralRoom extends Room {
+  GeneralRoom({required int roomNumber})
+      : super(roomNumber: roomNumber, roomType: RoomType.General);
 }

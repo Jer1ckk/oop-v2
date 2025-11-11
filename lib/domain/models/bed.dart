@@ -1,8 +1,8 @@
 import 'package:uuid/uuid.dart';
-import 'enum.dart';
 import 'patient.dart';
-
-var uuid = Uuid();
+import 'enum.dart';
+ 
+final uuid = Uuid();
 
 class Bed {
   final String bedId;
@@ -12,18 +12,15 @@ class Bed {
   Bed({String? bedId, this.bedStatus = BedStatus.Available, this.patient})
       : bedId = bedId ?? uuid.v4();
 
-  void assignPatient(Patient patient){
+  void assignPatient(Patient patient) {
     this.patient = patient;
     patient.assignBed(bedId);
     bedStatus = BedStatus.Occupied;
   }
 
-  void releasePatient(){
+  void releasePatient() {
     patient?.releasePatient();
-    this.patient = null;
+    patient = null;
     bedStatus = BedStatus.Available;
   }
-
 }
-
-
