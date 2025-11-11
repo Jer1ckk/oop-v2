@@ -7,7 +7,6 @@
       "name": "HOSPITAL_MANAGING_ROOMS_BEDS",
       "version": "0.0.0",
       "dependencies": [
-        "path",
         "uuid"
       ],
       "devDependencies": [
@@ -45,11 +44,6 @@
         "webkit_inspection_protocol",
         "yaml"
       ]
-    },
-    {
-      "name": "path",
-      "version": "1.9.1",
-      "dependencies": []
     },
     {
       "name": "uuid",
@@ -207,6 +201,11 @@
         "async",
         "stack_trace"
       ]
+    },
+    {
+      "name": "path",
+      "version": "1.9.1",
+      "dependencies": []
     },
     {
       "name": "package_config",

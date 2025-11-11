@@ -8,5 +8,4 @@ dev_dependencies:
 
 dependencies:
   uuid: ^4.5.1
-  path: any
 

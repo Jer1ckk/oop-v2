@@ -19,7 +19,7 @@ class HospitalDataManager {
 
     final file = File(filePath);
     await file.writeAsString(jsonEncode(data), flush: true);
-    print('Data saved to $filePath');
+    //print('Data saved to $filePath');
   }
 
   Future<Map<String, dynamic>> loadData() async {

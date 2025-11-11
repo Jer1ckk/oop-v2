@@ -72,7 +72,7 @@ class HospitalConsoleUI {
   Future<void> saveData() async {
     try {
       await dataManager.saveData(system.activePatient, system.allRoom);
-      print('Data saved successfully.');
+      //print('Data saved successfully.');
     } catch (e) {
       print('Error saving data: $e');
     }
